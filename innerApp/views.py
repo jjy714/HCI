@@ -9,7 +9,7 @@ def home(request):
 
 def question_ask(response):
     ls = questions.objects.get(id=1)
-    return render(response, "innerApp/list.html", {'questions' : questions.question})
+    return render(response, "innerApp/question.html", {'questions' : questions.question})
 
 
 def about_us(response):

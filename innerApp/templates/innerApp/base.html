@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>
         {% block title %}
-        GieokSiot
+        What For Lunch?
         {% endblock %}
     </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           rel="stylesheet"/>
 </head>
-<body>
+<body style="background: color #ffdb58;">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{% url 'home' %}">GS </a>
+    <a class="navbar-brand" href="{% url 'home' %}"> WFL </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span
             class="navbar-toggler-icon"></span></button>
@@ -24,12 +24,13 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'about_us' %}">About</a>
-                
         </ul>
     </div>
+    
 </nav>
 <div class="container">{% block content %} {% endblock %}</div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
