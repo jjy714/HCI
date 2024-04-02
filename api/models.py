@@ -5,15 +5,21 @@ from django.db import models
 class foods(models.Model):
     
     name = models.CharField(max_length=200) 
-    temperature = models.CharField(max_length=10) # hot and cold 
+    category = models.CharField(max_length=10, null=True)
     spiciness = models.IntegerField() # 0 ~ 5
-    origin = models.CharField(max_length=10)
-    soup = models.BooleanField(default = False)
+    carb = models.CharField(max_length=10, null=True)
+    temperature = models.CharField(max_length=10,null=True) # hot and cold 
+    soup = models.BooleanField(default = False, null=True)
     def __str__(self):
         return self.name
 
 class questions(models.Model):
     
-    question = models.CharField(max_length=300)
+    question = models.TextField(max_length=300)
+    answerFromAnsTable = models.IntegerField()
+    
+class answers(models.Model):
+    answer_id = models.ForeignKey(questions, on_delete=models.CASCADE)
     answer = models.IntegerField()
+    
     

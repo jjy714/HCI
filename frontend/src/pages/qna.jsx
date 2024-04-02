@@ -45,11 +45,11 @@ function qna() {
             </div>
             <h2>{question.question}</h2>
             <form onSubmit={submitAnswer}>
-            <input type='radio' name='answer' value='ans1' />{question.answer.id=1}
-            <input type='radio' name='answer' value='ans2' />{question.answer.id=2}
-            <input type='radio' name='answer' value='ans3' />{question.answer.id=3}
-            <input type='radio' name='answer' value='ans4' />{question.answer.id=4}
-            <input type='radio' name='answer' value='ans5' />{question.answer.id=5}
+            <input type='radio' name='answer' value= "-5" />{question.answer.id=1}
+            <input type='radio' name='answer' value='-3' />{question.answer.id=2}
+            <input type='radio' name='answer' value='-1' />{question.answer.id=3}
+            <input type='radio' name='answer' value='3' />{question.answer.id=4}
+            <input type='radio' name='answer' value='5' />{question.answer.id=5}
             <input type="submit"></input>
             </form>
         </div>
