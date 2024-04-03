@@ -1,15 +1,23 @@
 from rest_framework import serializers
-from .models import Question, Answer, foods
+from .models import questions, answers, foods
 
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Question
-        fields = '__all__'
+        model = questions
+        fields = ["question", "answerFromAnsTable"]
+        extra_kwargs = {"answerFromAnsTable": {"write_only": True}}
 
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Answer
+        model = answers
         fields = '__all__'
+        
+    def create(self, validated_data):
+        print(validated_data)
+
+    
+    
+     
 class FoodSerializer(serializers.ModelSerializer):
     class Meta:
         model = foods

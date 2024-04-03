@@ -6,8 +6,6 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Qna from "./pages/Qna"
 import ProtectedRoute from "./components/ProtectedRoutes";
-import QuestionsAnswers from "./pages/QuestionsAnswers";
-import Header from "./components/Header";
 
 // function logout() {
 //   localStorage.clear();
@@ -27,7 +25,7 @@ function App() {
         <Route path="/login" element={<Login />} /> {/* 수정됨 */}
         <Route path="/logout" element={<logout />} /> {/* 수정됨: 가정한 수정 */}
         {/* <Route path='/register' element={<RegisterAndLogout />} /> */}
-        <Route path='/Qna' element={<Qna />} /> 수정됨
+        <Route path='/Qna' element={<Qna />} /> 
         <Route path="*" element={<NotFound />}></Route> {/* 수정됨 */}
       </Routes>
     </BrowserRouter>

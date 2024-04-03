@@ -9,7 +9,7 @@ function Home() {
     <div className="home-container"> {/* className 추가 */}
       <h1> WFL</h1>
       <Link to= "/Qna" >
-        <button>NEXT</button>
+        <button>START</button>
       </Link>
     </div>
   );

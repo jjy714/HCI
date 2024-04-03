@@ -13,16 +13,22 @@ class foods(models.Model):
         return self.name
 
 class questions(models.Model):
-    
     question = models.TextField(max_length=300)
-    answerFromAnsTable = models.IntegerField(null=True)
+    answerFromAnsTable = models.BooleanField(null=True)
     
+# Change to Integer field later to calulate the preference mathematically 
+    
+#Ankswer Table: 
+# 1. Answer list for the question. 
+# Foreign key to the question id to match
+# insert data into the question table 
+
 class answers(models.Model):
     answer_id = models.ForeignKey(questions, on_delete=models.CASCADE)
     answer = models.BooleanField(null=True)
     
     
-    
+# Yes or No question
     
     
 
