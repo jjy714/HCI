@@ -1,8 +1,22 @@
 /* Container for the whole page */
+
 div {
     font-family: Arial, sans-serif;
   }
-  
+  /* Home.css */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #50C878;
+  height: 80vh; /* 전체 화면 높이 */
+}
+.home-container h1 {
+  font-size: 120px; /* 원하는 제목 크기로 조정 */
+  margin: 0; /* 필요에 따라 마진 제거 */
+}
+
   /* Styles for the notes section */
   .notes-section {
     margin-bottom: 2rem;

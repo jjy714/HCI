@@ -1,9 +1,8 @@
-
 from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("questions/", views.AnsSubmitReceive.as_view(), name="question")
     
-    
+    path('/questions/<str:id>', views.QuestiontSend.as_view(), name='questions'),
+    path('/answers/<str:id', views.ReceiveAnswers.as_view(), name='answers'),
 ]

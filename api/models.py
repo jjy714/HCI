@@ -3,10 +3,9 @@ from django.db import models
 # Create your models here.
 
 class foods(models.Model):
-    
     name = models.CharField(max_length=200) 
     category = models.CharField(max_length=10, null=True)
-    spiciness = models.IntegerField() # 0 ~ 5
+    spiciness = models.BooleanField() # 0 ~ 5
     carb = models.CharField(max_length=10, null=True)
     temperature = models.CharField(max_length=10,null=True) # hot and cold 
     soup = models.BooleanField(default = False, null=True)
@@ -16,10 +15,14 @@ class foods(models.Model):
 class questions(models.Model):
     
     question = models.TextField(max_length=300)
-    answerFromAnsTable = models.IntegerField()
+    answerFromAnsTable = models.IntegerField(null=True)
     
 class answers(models.Model):
     answer_id = models.ForeignKey(questions, on_delete=models.CASCADE)
-    answer = models.IntegerField()
+    answer = models.BooleanField(null=True)
     
     
+    
+    
+    
+
