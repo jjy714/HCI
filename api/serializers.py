@@ -5,7 +5,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = questions
         fields = ["question", "answerFromAnsTable"]
-        extra_kwargs = {"answerFromAnsTable": {"write_only": True}}
+        extra_kwargs = {"questions" : {"read_only": True}}
 
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,11 +1,11 @@
-from django.shortcuts import render
-from django.contrib.auth.models import User
+from django.shortcuts import render, get_object_or_404
 from rest_framework import generics
+from rest_framework.views import APIView
 from .serializers import FoodSerializer, QuestionSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import questions, foods, answers
 
-class QuestionSend(generics.ListCreateAPIView):
+class QuestionSend(generics.ListAPIView):
     serializer_class = QuestionSerializer
     queryset = questions.objects.all()
     permission_classes = [AllowAny]
@@ -16,17 +16,17 @@ class QuestionSend(generics.ListCreateAPIView):
             return self.queryset.filter(id=question_id)
         return self.queryset.none()
     
-    def perform_create(self, serializer):
-        answer_value = self.request.data['answerFromReact']
-        
-        if serializer.is_valid():
-            if answer_value is not None:
-                serializer.save(answerFromAnsTable=answer_value)
-            else:
-                serializer.save()  # If 
-        else:
-            print("error")
-            
+    
+class AnswerReceived(generics.UpdateAPIView):
+    serializer_class = QuestionSerializer
+    queryset = questions.objects.all()
+    permission_classes = [AllowAny]
+    
+    def perform_update(self, serializer):
+        answer_id = self.kwargs.get('id', None)
+        if answer_id is not None:
+            return serializer.save(id = answer_id)
+ 
 class SendResult(generics.CreateAPIView):
     """
     if answer collected is ...

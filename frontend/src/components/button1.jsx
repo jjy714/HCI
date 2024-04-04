@@ -5,14 +5,14 @@ import { Navigate } from "react-router-dom";
 
 
 
-const YellowButton = () => {
+const Button1 = () => {
     return (
         <Button
             id="blueButton"
-            onClick={Navigate to="/question"}
-            bg="info700"
-          >
+            onClick() => {Navigate to="/question"}
             Next
         </Button>
     )
 }
+
+export default Button1

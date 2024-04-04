@@ -1,41 +1,59 @@
 import { useState, useEffect } from "react";
 import api from "../api";
-import "../styles/Qna.css" // 확실히 Home.css가 임포트되었는지 확인하세요.
+import "../styles/Qna.css" 
 
 function QuestionComponent() {
     const [question, setQuestion] = useState(null);
-    const [selectedAnswer, setSelectedAnswer] = useState(false);
+    const [selectedAnswer, setSelectedAnswer] = useState("");
     const [count, setCount] = useState(1);
-
+    const result=""
     useEffect(() => {
         get_question(count);
     }, [count]);
 
     const get_question = (count) => {
-        api.get(`/api/questions/${count}`)
+        api.get(`/api/questions/${count+3}`)
             .then((res) => {
-                // API 응답 구조에 따라 적절한 데이터 처리
-                // 예시에서는 응답 데이터가 직접 question 객체라고 가정
-                setQuestion(res.data[0]); // 데이터를 상태에 저장
+
+                setQuestion(res.data[0]);
                 console.log(res.data);
             })
             .catch((err) => alert(err));
     };
     //const get_answer from answer table and store into question table 
+    const validateAnswer = (e)=>{
+        let errors = false
+        if(e.target.value == null){
+            alert("Answer not submitted");
+           
+            errors = true;
+            return errors
+        }
 
+    }
     const submitAnswer = (e) => {
         e.preventDefault();
-        api.post(`/api/answers/`, {answerFromReact: selectedAnswer })
+        console.log(selectedAnswer); // Access the selected answer from state
+    
+        // Check if an answer is selected
+        if (!selectedAnswer) {
+            alert("Please select an answer.");
+            return;
+        }
+    
+        // Convert the boolean value to a string ('true' or 'false') before sending
+        api.put(`/api/answers/${count}`, { answerFromReact: selectedAnswer })
             .then((res) => {
                 if (res.status === 200) {
                     alert("Answer submitted!");
-                    setCount(count + 1); // 답변 제출 성공 시 count 증가
+                    setCount(count + 1);
                 } else {
                     alert("Failed to submit answer.");
                 }
             })
             .catch((error) => alert(error));
     };
+    
     return (
         <div>
             <div>
@@ -46,6 +64,7 @@ function QuestionComponent() {
                     <h1>Loading question...</h1>
                 )}
             </div>
+            <div className="radio-container">
             <form onSubmit={submitAnswer}>
                 <label>
                     Yes
@@ -53,7 +72,7 @@ function QuestionComponent() {
                         type="radio"
                         name="answer"
                         value="true"
-                        onChange={(e) => setSelectedAnswer(true)}
+                        onChange={(e) => setSelectedAnswer(e.target.value)}
                     />
                 </label>
                 <label>
@@ -62,12 +81,15 @@ function QuestionComponent() {
                         type="radio"
                         name="answer"
                         value="false"
-                        onChange={(e) => setSelectedAnswer(false)}
+                        onChange={
+                            (e) => 
+                            setSelectedAnswer(e.target.value)
+                        }
                     />
                 </label>
-                {/* 나머지 라디오 버튼도 유사하게 수정 */}
-                <input type="submit" value="Submit"></input>
+                <input type="submit"></input>
             </form>
+            </div>
         </div>
     );
 }

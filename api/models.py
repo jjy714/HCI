@@ -13,8 +13,8 @@ class foods(models.Model):
         return self.name
 
 class questions(models.Model):
-    question = models.TextField(max_length=300)
-    answerFromAnsTable = models.BooleanField(null=True)
+    question = models.TextField(max_length=300, editable=True)
+    answerFromAnsTable = models.CharField(max_length=100, null=True)
     
 # Change to Integer field later to calulate the preference mathematically 
     
